@@ -64,9 +64,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendTo(CommandSender[] targets){
         String tag = tags.getTag(false, false);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -75,9 +74,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendTo(Collection<CommandSender> targets){
         String tag = tags.getTag(false, false);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -94,9 +92,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendErrorTo(CommandSender[] targets){
         String tag = tags.getTag(false, true);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -105,9 +102,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendErrorTo(Collection<CommandSender> targets){
         String tag = tags.getTag(false, true);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -136,9 +132,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendToPlayers(Player[] targets){
         String tag = tags.getTag(false, false);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -147,9 +142,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendToPlayers(Collection<Player> targets){
         String tag = tags.getTag(false, false);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -158,9 +152,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendErrorToPlayers(Player[] targets){
         String tag = tags.getTag(false, true);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
@@ -169,9 +162,8 @@ public class PlukMessageDefault implements PlukMessage{
     public void sendErrorToPlayers(Collection<Player> targets){
         String tag = tags.getTag(false, true);
         for(String line : message){
-            String messageLine = tag.concat(line);
             for(CommandSender target : targets){
-                target.sendMessage(line);
+                target.sendMessage(tag.concat(line));
             }
         }
     }
