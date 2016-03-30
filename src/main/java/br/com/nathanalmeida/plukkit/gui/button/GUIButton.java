@@ -16,7 +16,7 @@ public interface GUIButton{
 
     int getSlot();
 
-    ItemStack makeDisplay();
+    ItemStack makeDisplay(Player player);
 
     void onClick(Player player, InventoryClickEvent event);
 
