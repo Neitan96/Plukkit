@@ -1,6 +1,5 @@
 package br.com.nathanalmeida.plukkit.gui.manager;
 
-import br.com.nathanalmeida.plukkit.gui.action.GUIActionDTO;
 import br.com.nathanalmeida.plukkit.gui.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.page.GUIPage;
 import org.bukkit.entity.Player;
@@ -22,6 +21,6 @@ public interface GUIManager{
 
     void openToPlayer(Player player);
 
-    void processAction(Player player, GUIActionDTO action, InventoryClickEvent event);
+    void processAction(Player player, String command, String argument, InventoryClickEvent event);
 
 }

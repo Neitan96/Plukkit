@@ -1,33 +1,37 @@
 package br.com.nathanalmeida.plukkit.gui.action;
 
+import br.com.nathanalmeida.plukkit.gui.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.helpers.HelpArray;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 /**
  * Project: Plukkit
  * Author: Neitan96
- * Since: 28/03/2016 16:23
+ * Since: 30/03/2016 17:01
  */
-public class GUIActionDTO{
+public class ActionCommandDefault implements GUIActionCommand{
 
+    protected final GUIManager manager;
     protected final String command;
     protected final String argument;
     protected final String permission;
-    protected final boolean ignoreOther;
 
-    public GUIActionDTO(String command, String argument, String permission, boolean ignoreOther){
+    public ActionCommandDefault(GUIManager manager, String command, String argument, String permission){
+        this.manager = manager;
         this.command = command;
         this.argument = argument;
         this.permission = permission;
-        this.ignoreOther = ignoreOther;
     }
 
-    public GUIActionDTO(String action, String permission, boolean ignoreOther){
+    public ActionCommandDefault(GUIManager manager, String action, String permission){
         String[] explode = explode(action);
         this.command = explode[0];
         this.argument = explode[1];
+        this.manager = manager;
         this.permission = permission;
-        this.ignoreOther = ignoreOther;
     }
+
 
     private static String[] explode(String action){
         if(action != null && !action.isEmpty()){
@@ -35,25 +39,14 @@ public class GUIActionDTO{
             String[] split = action.split(":");
             return new String[]{split[0], HelpArray.joinString(split, 1, ":")};
 
-        }else {
+        }else{
             return new String[]{null, null};
         }
     }
 
-    public String getCommand(){
-        return command;
+    @Override
+    public void executeAction(Player player, InventoryClickEvent event){
+        if(player.hasPermission(permission))
+            manager.processAction(player, command, argument, event);
     }
-
-    public String getArgument(){
-        return argument;
-    }
-
-    public String getPermission(){
-        return permission;
-    }
-
-    public boolean isIgnoreOther(){
-        return ignoreOther;
-    }
-
 }
