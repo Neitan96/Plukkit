@@ -1,7 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.binder;
 
 import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
-import br.com.nathanalmeida.plukkit.gui.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.page.GUIPage;
 import br.com.nathanalmeida.plukkit.message.binder.MessageBinderDefault;
 import org.bukkit.entity.Player;
@@ -14,7 +13,7 @@ import org.bukkit.entity.Player;
 public class BinderPlayerInfos extends GUIBinderBase{
 
     @Override
-    public String bindValues(String message, Player player, GUIManager manager, GUIPage page, GUIButton button){
+    public String bindValues(String message, Player player, GUIPage page, GUIButton button){
 
         return MessageBinderDefault.BINDER_DEFAULT.bindValues(message,
                 "PlayerName", player.getName(),
