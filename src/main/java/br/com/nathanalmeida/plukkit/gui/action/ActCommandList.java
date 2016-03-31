@@ -8,11 +8,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
  * Author: Neitan96
  * Since: 30/03/2016 17:07
  */
-public class ActionCommandList implements GUIActionCommand{
+public class ActCommandList implements GUIActionCommand{
 
     protected final GUIActionCommand[] actions;
 
-    public ActionCommandList(GUIActionCommand[] actions){
+    public ActCommandList(GUIActionCommand... actions){
         this.actions = actions;
     }
 

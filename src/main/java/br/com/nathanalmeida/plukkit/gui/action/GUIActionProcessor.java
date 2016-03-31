@@ -1,6 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.action;
 
-import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.manager.GUIManager;
 import org.bukkit.entity.Player;
 
 /**
@@ -10,6 +10,6 @@ import org.bukkit.entity.Player;
  */
 public interface GUIActionProcessor{
 
-    void process(Player player, String argument, GUIButton button);
+    void process(Player player, String argument, GUIManager manager);
 
 }

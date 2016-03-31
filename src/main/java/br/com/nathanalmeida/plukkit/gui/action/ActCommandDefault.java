@@ -10,21 +10,21 @@ import org.bukkit.event.inventory.InventoryClickEvent;
  * Author: Neitan96
  * Since: 30/03/2016 17:01
  */
-public class ActionCommandDefault implements GUIActionCommand{
+public class ActCommandDefault implements GUIActionCommand{
 
     protected final GUIManager manager;
     protected final String command;
     protected final String argument;
     protected final String permission;
 
-    public ActionCommandDefault(GUIManager manager, String command, String argument, String permission){
+    public ActCommandDefault(GUIManager manager, String command, String argument, String permission){
         this.manager = manager;
         this.command = command;
         this.argument = argument;
         this.permission = permission;
     }
 
-    public ActionCommandDefault(GUIManager manager, String action, String permission){
+    public ActCommandDefault(GUIManager manager, String action, String permission){
         String[] explode = explode(action);
         this.command = explode[0];
         this.argument = explode[1];

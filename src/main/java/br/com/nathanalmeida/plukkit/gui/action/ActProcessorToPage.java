@@ -1,6 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.action;
 
-import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.page.GUIPage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -12,16 +12,16 @@ import java.util.logging.Level;
  * Author: Neitan96
  * Since: 29/03/2016 20:45
  */
-public class ActionToPage implements GUIActionProcessor{
+public class ActProcessorToPage implements GUIActionProcessor{
 
     @Override
-    public void process(Player player, String argument, GUIButton button){
+    public void process(Player player, String argument, GUIManager manager){
         if(argument == null){
             Bukkit.getLogger().log(Level.WARNING, "Command from action 'ToPage' not found!");
             return;
         }
 
-        GUIPage page = button.getPage().getManager().getPage(argument);
+        GUIPage page = manager.getPage(argument);
         if(page == null){
             Bukkit.getLogger().log(Level.WARNING, "Page name from action 'ToPage' not found!");
 
