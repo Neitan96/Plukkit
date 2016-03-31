@@ -83,8 +83,10 @@ public class PageDefault implements GUIPage{
 
         for(GUIButton button : buttons){
             ItemStack display = button.makeDisplay(player);
-            if(display != null)
+            if(display != null){
                 inventory.setItem(button.getSlot(), display);
+                owner.setButton(button.getSlot(), button);
+            }
         }
 
         if(displayDefault != null){

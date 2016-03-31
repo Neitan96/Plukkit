@@ -1,5 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.holder;
 
+import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
 import br.com.nathanalmeida.plukkit.gui.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
@@ -14,5 +15,9 @@ public interface GUIInventoryHolder extends InventoryHolder{
     Player getPlayer();
 
     GUIPage getPage();
+
+    void setButton(int slot, GUIButton button);
+
+    GUIButton getButton(int slot);
 
 }
