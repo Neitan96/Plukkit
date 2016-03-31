@@ -1,5 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.page;
 
+import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
 import br.com.nathanalmeida.plukkit.gui.manager.GUIManager;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -14,6 +15,14 @@ public interface GUIPage{
     GUIManager getManager();
 
     String getName();
+
+
+    void addButton(GUIButton button);
+
+    void removeButton(GUIButton button);
+
+    void removeButton(int slot);
+
 
     Inventory renderInventory(Player player);
 
