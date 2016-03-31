@@ -45,7 +45,10 @@ public class ButtonDefault implements GUIButton{
 
     @Override
     public ItemStack makeDisplay(Player player){
-        return display.renderDisplay(player, this);
+        if(player.hasPermission(permission))
+            return display.renderDisplay(player, this);
+
+        return null;
     }
 
     @Override
