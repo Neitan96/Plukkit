@@ -1,4 +1,4 @@
-package br.com.nathanalmeida.plukkit.gui.button.display;
+package br.com.nathanalmeida.plukkit.gui.display;
 
 import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
 import org.bukkit.entity.Player;

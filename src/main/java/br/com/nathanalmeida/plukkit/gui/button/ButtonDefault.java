@@ -1,7 +1,7 @@
 package br.com.nathanalmeida.plukkit.gui.button;
 
 import br.com.nathanalmeida.plukkit.gui.action.GUIActionCommand;
-import br.com.nathanalmeida.plukkit.gui.button.display.GUIDisplay;
+import br.com.nathanalmeida.plukkit.gui.display.GUIDisplay;
 import br.com.nathanalmeida.plukkit.gui.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
