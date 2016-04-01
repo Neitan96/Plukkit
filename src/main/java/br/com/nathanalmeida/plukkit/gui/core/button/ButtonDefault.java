@@ -2,6 +2,7 @@ package br.com.nathanalmeida.plukkit.gui.core.button;
 
 import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionCommand;
 import br.com.nathanalmeida.plukkit.gui.core.display.GUIDisplay;
+import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -14,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ButtonDefault implements GUIButton{
 
-    protected final GUIPage page;
     protected final int slot;
     protected final GUIDisplay display;
     protected final boolean closeOnClick;
@@ -22,23 +22,15 @@ public class ButtonDefault implements GUIButton{
     protected final String permission;
 
 
-    public ButtonDefault(GUIPage page, int slot, GUIDisplay display, boolean closeOnClick,
+    public ButtonDefault(int slot, GUIDisplay display, boolean closeOnClick,
                          GUIActionCommand actionCommand, String permission){
-        this.page = page;
         this.slot = slot;
         this.display = display;
         this.closeOnClick = closeOnClick;
         this.actionCommand = actionCommand;
         this.permission = permission;
-
-        page.addButton(this);
     }
 
-
-    @Override
-    public GUIPage getPage(){
-        return page;
-    }
 
     @Override
     public int getSlot(){
@@ -46,9 +38,9 @@ public class ButtonDefault implements GUIButton{
     }
 
     @Override
-    public ItemStack makeDisplay(Player player){
+    public ItemStack makeDisplay(Player player, GUIManager manager, GUIPage page){
         if(permission == null || player.hasPermission(permission))
-            return display.renderDisplay(player, this);
+            return display.renderDisplay(player, manager, page, this);
 
         return null;
     }

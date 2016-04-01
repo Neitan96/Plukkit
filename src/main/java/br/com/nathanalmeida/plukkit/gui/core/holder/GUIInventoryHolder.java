@@ -1,6 +1,7 @@
 package br.com.nathanalmeida.plukkit.gui.core.holder;
 
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
@@ -13,6 +14,8 @@ import org.bukkit.inventory.InventoryHolder;
 public interface GUIInventoryHolder extends InventoryHolder{
 
     Player getPlayer();
+
+    GUIManager getManager();
 
     GUIPage getPage();
 

@@ -12,8 +12,6 @@ import org.bukkit.inventory.Inventory;
  */
 public interface GUIPage{
 
-    GUIManager getManager();
-
     String getName();
 
 
@@ -24,8 +22,8 @@ public interface GUIPage{
     void removeButton(int slot);
 
 
-    Inventory renderInventory(Player player);
+    Inventory renderInventory(Player player, GUIManager manager);
 
-    void openToPlayer(Player player);
+    void openToPlayer(Player player, GUIManager manager);
 
 }

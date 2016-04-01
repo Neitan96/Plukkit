@@ -1,6 +1,8 @@
 package br.com.nathanalmeida.plukkit.gui.core.display;
 
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
+import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,9 +20,9 @@ public class DisplaysPermissions implements GUIDisplay{
     }
 
     @Override
-    public ItemStack renderDisplay(Player player, GUIButton button){
+    public ItemStack renderDisplay(Player player, GUIManager manager, GUIPage page, GUIButton button){
         for(DisplayPermission display : displays){
-            ItemStack itemStack = display.renderDisplay(player, button);
+            ItemStack itemStack = display.renderDisplay(player, manager, page, button);
             if(itemStack != null) return itemStack;
         }
         return null;

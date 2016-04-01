@@ -22,7 +22,6 @@ import java.util.List;
  */
 public class PageDefault implements GUIPage{
 
-    protected final GUIManager manager;
     protected final String name;
     protected final GUITitle title;
     protected final int size;
@@ -33,14 +32,11 @@ public class PageDefault implements GUIPage{
 
     public PageDefault(GUIManager manager, String name, GUITitle title,
                        int size, String permission, ItemStack displayDefault){
-        this.manager = manager;
         this.name = name;
         this.title = title;
         this.size = size;
         this.permission = permission;
         this.displayDefault = displayDefault;
-
-        manager.addPage(this);
     }
 
     public PageDefault(GUIManager manager, String name, GUITitle title,
@@ -48,11 +44,7 @@ public class PageDefault implements GUIPage{
         this(manager, name, title, size, permission, displayDefault);
         Collections.addAll(this.buttons, buttons);
     }
-
-    @Override
-    public GUIManager getManager(){
-        return manager;
-    }
+    
 
     @Override
     public String getName(){
@@ -77,14 +69,14 @@ public class PageDefault implements GUIPage{
     }
 
     @Override
-    public Inventory renderInventory(Player player){
+    public Inventory renderInventory(Player player, GUIManager manager){
         if(permission != null && !player.hasPermission(permission)) return null;
 
-        GUIInventoryHolder owner = new GUIInvHolderDefault(player, this);
+        GUIInventoryHolder owner = new GUIInvHolderDefault(player, manager, this);
         Inventory inventory = Bukkit.createInventory(owner, size, title.makeTitle(player));
 
         for(GUIButton button : buttons){
-            ItemStack display = button.makeDisplay(player);
+            ItemStack display = button.makeDisplay(player, manager, this);
             if(display != null){
                 inventory.setItem(button.getSlot(), display);
                 owner.setButton(button.getSlot(), button);
@@ -103,8 +95,8 @@ public class PageDefault implements GUIPage{
     }
 
     @Override
-    public void openToPlayer(Player player){
-        Inventory inventory = renderInventory(player);
+    public void openToPlayer(Player player, GUIManager manager){
+        Inventory inventory = renderInventory(player, manager);
         if(inventory != null){
             player.closeInventory();
             player.openInventory(inventory);

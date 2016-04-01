@@ -2,6 +2,8 @@ package br.com.nathanalmeida.plukkit.gui.core.display;
 
 import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
+import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -30,7 +32,7 @@ public class ItemStackDisplay implements GUIDisplay{
 
 
     @Override
-    public ItemStack renderDisplay(Player player, GUIButton button){
+    public ItemStack renderDisplay(Player player, GUIManager manager, GUIPage page, GUIButton button){
         ItemStack itemStack = this.itemStack.clone();
         ItemMeta itemMeta = itemStack.getItemMeta();
 
@@ -38,13 +40,13 @@ public class ItemStackDisplay implements GUIDisplay{
 
             String displayName = itemMeta.getDisplayName();
             if(displayName != null){
-                displayName = binder.bindValues(displayName, player, button.getPage(), button);
+                displayName = binder.bindValues(displayName, player, page, button);
                 itemMeta.setDisplayName(displayName);
             }
 
             List<String> lore = itemMeta.getLore();
             if(lore != null){
-                lore = binder.bindValues(lore, player, button.getPage(), button);
+                lore = binder.bindValues(lore, player, page, button);
                 itemMeta.setLore(lore);
             }
 

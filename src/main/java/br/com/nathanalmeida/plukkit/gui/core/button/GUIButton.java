@@ -1,5 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.button;
 
+import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -12,11 +13,9 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface GUIButton{
 
-    GUIPage getPage();
-
     int getSlot();
 
-    ItemStack makeDisplay(Player player);
+    ItemStack makeDisplay(Player player, GUIManager manager, GUIPage page);
 
     void onClick(Player player, InventoryClickEvent event);
 

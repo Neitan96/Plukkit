@@ -27,7 +27,7 @@ public class ActProcessorToPage implements GUIActionProcessor{
 
         }else{
             player.closeInventory();
-            page.openToPlayer(player);
+            page.openToPlayer(player, manager);
         }
     }
 

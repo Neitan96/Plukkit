@@ -104,9 +104,16 @@ public class ManagerDefault implements GUIManager, Listener{
 
     @Override
     public void openToPlayer(Player player){
-        GUIPage page = pageHome != null ? pageHome : pages.get(0);
-        if(page != null)
-            page.openToPlayer(player);
+        GUIPage page = null;
+
+        if(pageHome != null){
+            page = pageHome;
+
+        }else if(pages.size() > 0){
+            page = pages.get(0);
+        }
+
+        if(page != null) page.openToPlayer(player, this);
     }
 
     @Override
@@ -139,7 +146,7 @@ public class ManagerDefault implements GUIManager, Listener{
 
         GUIInventoryHolder holder = (GUIInventoryHolder) inventory.getHolder();
 
-        if(holder.getPage().getManager() != this)
+        if(holder.getManager() != this)
             return;
 
         event.setCancelled(true);
@@ -164,7 +171,7 @@ public class ManagerDefault implements GUIManager, Listener{
                 InventoryHolder holder = inventory.getHolder();
                 if(holder instanceof GUIInventoryHolder){
                     GUIInventoryHolder holderGUI = (GUIInventoryHolder) holder;
-                    if(holderGUI.getPage().getManager() != this) continue;
+                    if(holderGUI.getManager() != this) continue;
                     player.closeInventory();
                 }
             }
