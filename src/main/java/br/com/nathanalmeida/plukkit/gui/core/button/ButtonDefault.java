@@ -30,6 +30,8 @@ public class ButtonDefault implements GUIButton{
         this.closeOnClick = closeOnClick;
         this.actionCommand = actionCommand;
         this.permission = permission;
+
+        page.addButton(this);
     }
 
 

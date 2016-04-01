@@ -39,6 +39,8 @@ public class PageDefault implements GUIPage{
         this.size = size;
         this.permission = permission;
         this.displayDefault = displayDefault;
+
+        manager.addPage(this);
     }
 
     public PageDefault(GUIManager manager, String name, GUITitle title,
