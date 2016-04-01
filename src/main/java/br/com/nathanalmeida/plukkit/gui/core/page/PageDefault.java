@@ -1,5 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.page;
 
+import br.com.nathanalmeida.plukkit.gui.core.button.ButtonSlot;
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
 import br.com.nathanalmeida.plukkit.gui.core.holder.GUIInvHolderDefault;
 import br.com.nathanalmeida.plukkit.gui.core.holder.GUIInventoryHolder;
@@ -12,7 +13,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,7 +28,7 @@ public class PageDefault implements GUIPage{
     protected final String permission;
     protected final ItemStack displayDefault;
 
-    protected final List<GUIButton> buttons = new ArrayList<>();
+    protected final List<ButtonSlot> buttons = new ArrayList<>();
 
     public PageDefault(GUIManager manager, String name, GUITitle title,
                        int size, String permission, ItemStack displayDefault){
@@ -38,12 +38,6 @@ public class PageDefault implements GUIPage{
         this.permission = permission;
         this.displayDefault = displayDefault;
     }
-
-    public PageDefault(GUIManager manager, String name, GUITitle title,
-                       int size, String permission, ItemStack displayDefault, GUIButton... buttons){
-        this(manager, name, title, size, permission, displayDefault);
-        Collections.addAll(this.buttons, buttons);
-    }
     
 
     @Override
@@ -52,13 +46,16 @@ public class PageDefault implements GUIPage{
     }
 
     @Override
-    public void addButton(GUIButton button){
-        buttons.add(button);
+    public void addButton(int slot, GUIButton button){
+        buttons.add(new ButtonSlot(slot, button));
     }
 
     @Override
     public void removeButton(GUIButton button){
-        buttons.remove(button);
+        for(int i = buttons.size()-1; i >= 0; i--){
+            if(buttons.get(i).getButton() == button)
+                buttons.remove(i);
+        }
     }
 
     @Override
@@ -75,11 +72,12 @@ public class PageDefault implements GUIPage{
         GUIInventoryHolder owner = new GUIInvHolderDefault(player, manager, this);
         Inventory inventory = Bukkit.createInventory(owner, size, title.makeTitle(player));
 
-        for(GUIButton button : buttons){
+        for(ButtonSlot buttonSlot : buttons){
+            GUIButton button = buttonSlot.getButton();
             ItemStack display = button.makeDisplay(player, manager, this);
             if(display != null){
-                inventory.setItem(button.getSlot(), display);
-                owner.setButton(button.getSlot(), button);
+                inventory.setItem(buttonSlot.getSlot(), display);
+                owner.setButton(buttonSlot.getSlot(), button);
             }
         }
 

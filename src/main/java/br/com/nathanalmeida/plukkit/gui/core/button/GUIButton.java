@@ -13,8 +13,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface GUIButton{
 
-    int getSlot();
-
     ItemStack makeDisplay(Player player, GUIManager manager, GUIPage page);
 
     void onClick(Player player, InventoryClickEvent event);

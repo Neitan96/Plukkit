@@ -15,7 +15,7 @@ public interface GUIPage{
     String getName();
 
 
-    void addButton(GUIButton button);
+    void addButton(int slot, GUIButton button);
 
     void removeButton(GUIButton button);
 

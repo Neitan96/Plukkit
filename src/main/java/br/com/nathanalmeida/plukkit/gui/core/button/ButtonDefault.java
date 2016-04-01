@@ -15,27 +15,20 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ButtonDefault implements GUIButton{
 
-    protected final int slot;
     protected final GUIDisplay display;
     protected final boolean closeOnClick;
     protected final GUIActionCommand actionCommand;
     protected final String permission;
 
 
-    public ButtonDefault(int slot, GUIDisplay display, boolean closeOnClick,
+    public ButtonDefault(GUIDisplay display, boolean closeOnClick,
                          GUIActionCommand actionCommand, String permission){
-        this.slot = slot;
         this.display = display;
         this.closeOnClick = closeOnClick;
         this.actionCommand = actionCommand;
         this.permission = permission;
     }
 
-
-    @Override
-    public int getSlot(){
-        return slot;
-    }
 
     @Override
     public ItemStack makeDisplay(Player player, GUIManager manager, GUIPage page){
