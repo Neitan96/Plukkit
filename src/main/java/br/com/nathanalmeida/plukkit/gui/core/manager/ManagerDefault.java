@@ -4,6 +4,7 @@ import br.com.nathanalmeida.plukkit.gui.core.action.ActProcessorCmdConsole;
 import br.com.nathanalmeida.plukkit.gui.core.action.ActProcessorCmdPlayer;
 import br.com.nathanalmeida.plukkit.gui.core.action.ActProcessorToPage;
 import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionProcessor;
+import br.com.nathanalmeida.plukkit.gui.core.binder.BinderPlayerInfos;
 import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.binder.MultiBinder;
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
@@ -45,6 +46,8 @@ public class ManagerDefault implements GUIManager, Listener{
         addActionProcessor("ToPage", new ActProcessorToPage());
         addActionProcessor("CommandPlayer", new ActProcessorCmdPlayer());
         addActionProcessor("CommandConsole", new ActProcessorCmdConsole());
+
+        addBinder(new BinderPlayerInfos());
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
