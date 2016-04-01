@@ -1,11 +1,21 @@
 package br.com.nathanalmeida.plukkit.gui.manager;
 
+import br.com.nathanalmeida.plukkit.gui.action.ActProcessorCmdConsole;
+import br.com.nathanalmeida.plukkit.gui.action.ActProcessorCmdPlayer;
+import br.com.nathanalmeida.plukkit.gui.action.ActProcessorToPage;
 import br.com.nathanalmeida.plukkit.gui.action.GUIActionProcessor;
 import br.com.nathanalmeida.plukkit.gui.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.binder.MultiBinder;
+import br.com.nathanalmeida.plukkit.gui.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.holder.GUIInventoryHolder;
 import br.com.nathanalmeida.plukkit.gui.page.GUIPage;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -18,7 +28,7 @@ import java.util.Map;
  * Author: Neitan96
  * Since: 31/03/2016 11:22
  */
-public class ManagerDefault implements GUIManager{
+public class ManagerDefault implements GUIManager, Listener{
 
     protected final JavaPlugin plugin;
     protected final MultiBinder binders = new MultiBinder();
@@ -31,6 +41,12 @@ public class ManagerDefault implements GUIManager{
 
     public ManagerDefault(JavaPlugin plugin){
         this.plugin = plugin;
+
+        addActionProcessor("ToPage", new ActProcessorToPage());
+        addActionProcessor("CommandPlayer", new ActProcessorCmdPlayer());
+        addActionProcessor("CommandConsole", new ActProcessorCmdConsole());
+
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
 
@@ -106,6 +122,29 @@ public class ManagerDefault implements GUIManager{
         GUIActionProcessor processor = processors.get(command);
         if(processor != null)
             processor.process(player, arguments, this);
+    }
+
+
+    @EventHandler(priority = EventPriority.HIGH)
+    private void onClickEvent(InventoryClickEvent event){
+        Inventory inventory = event.getInventory();
+
+        if(!(inventory.getHolder() instanceof GUIInventoryHolder)
+                || !(event.getWhoClicked() instanceof Player))
+            return;
+
+        GUIInventoryHolder holder = (GUIInventoryHolder) inventory.getHolder();
+
+        if(holder.getPage().getManager() != this)
+            return;
+
+        event.setCancelled(true);
+
+        GUIButton button = holder.getButton(event.getSlot());
+
+        if(button != null)
+            button.onClick(((Player) event.getWhoClicked()), event);
+
     }
 
 }
