@@ -57,7 +57,7 @@ public class ButtonDefault implements GUIButton{
     public void onClick(Player player, InventoryClickEvent event){
         if(permission == null || player.hasPermission(permission)){
             if(closeOnClick) player.closeInventory();
-            actionCommand.executeAction(player, event);
+            if(actionCommand != null) actionCommand.executeAction(player, event);
         }
     }
 
