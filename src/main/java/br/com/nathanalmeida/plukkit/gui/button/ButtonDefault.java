@@ -45,7 +45,7 @@ public class ButtonDefault implements GUIButton{
 
     @Override
     public ItemStack makeDisplay(Player player){
-        if(player.hasPermission(permission))
+        if(permission == null || player.hasPermission(permission))
             return display.renderDisplay(player, this);
 
         return null;
@@ -53,7 +53,7 @@ public class ButtonDefault implements GUIButton{
 
     @Override
     public void onClick(Player player, InventoryClickEvent event){
-        if(player.hasPermission(permission)){
+        if(permission == null || player.hasPermission(permission)){
             if(closeOnClick) player.closeInventory();
             actionCommand.executeAction(player, event);
         }

@@ -76,7 +76,7 @@ public class PageDefault implements GUIPage{
 
     @Override
     public Inventory renderInventory(Player player){
-        if(!player.hasPermission(permission)) return null;
+        if(permission != null && !player.hasPermission(permission)) return null;
 
         GUIInventoryHolder owner = new GUIInvHolderDefault(player, this);
         Inventory inventory = Bukkit.createInventory(owner, size, title.makeTitle(player));
