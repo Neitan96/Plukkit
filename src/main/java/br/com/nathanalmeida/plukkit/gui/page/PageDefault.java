@@ -90,7 +90,7 @@ public class PageDefault implements GUIPage{
         }
 
         if(displayDefault != null){
-            for(int i = 0; i < inventory.getMaxStackSize(); i++){
+            for(int i = 0; i < inventory.getSize()-1; i++){
                 ItemStack item = inventory.getItem(i);
                 if(item == null || item.getType() == Material.AIR)
                     inventory.setItem(i, displayDefault);
