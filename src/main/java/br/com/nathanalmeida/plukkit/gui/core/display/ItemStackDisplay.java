@@ -48,6 +48,8 @@ public class ItemStackDisplay implements GUIDisplay{
                 itemMeta.setLore(lore);
             }
 
+            itemStack.setItemMeta(itemMeta);
+
         }
 
         return itemStack;
