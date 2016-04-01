@@ -17,6 +17,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -148,6 +149,33 @@ public class ManagerDefault implements GUIManager, Listener{
         if(button != null)
             button.onClick(((Player) event.getWhoClicked()), event);
 
+    }
+
+    @Override
+    public void closeAllInventories(){
+        for(Player player : Bukkit.getOnlinePlayers()){
+
+            Inventory[] inventories = new Inventory[]{
+                    player.getOpenInventory().getTopInventory(),
+                    player.getOpenInventory().getBottomInventory()
+            };
+
+            for(Inventory inventory : inventories){
+                InventoryHolder holder = inventory.getHolder();
+                if(holder instanceof GUIInventoryHolder){
+                    GUIInventoryHolder holderGUI = (GUIInventoryHolder) holder;
+                    if(holderGUI.getPage().getManager() != this) continue;
+                    player.closeInventory();
+                }
+            }
+
+        }
+    }
+
+    @Override
+    protected void finalize() throws Throwable{
+        super.finalize();
+        closeAllInventories();
     }
 
 }

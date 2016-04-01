@@ -41,4 +41,6 @@ public interface GUIManager{
 
     void processAction(Player player, String command, String[] arguments, InventoryClickEvent event);
 
+
+    void closeAllInventories();
 }
