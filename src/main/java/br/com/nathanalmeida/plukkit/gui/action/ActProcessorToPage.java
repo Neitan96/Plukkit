@@ -15,13 +15,13 @@ import java.util.logging.Level;
 public class ActProcessorToPage implements GUIActionProcessor{
 
     @Override
-    public void process(Player player, String argument, GUIManager manager){
-        if(argument == null){
+    public void process(Player player, String[] arguments, GUIManager manager){
+        if(arguments.length == 0){
             Bukkit.getLogger().log(Level.WARNING, "Command from action 'ToPage' not found!");
             return;
         }
 
-        GUIPage page = manager.getPage(argument);
+        GUIPage page = manager.getPage(arguments[0]);
         if(page == null){
             Bukkit.getLogger().log(Level.WARNING, "Page name from action 'ToPage' not found!");
 

@@ -14,13 +14,13 @@ import java.util.logging.Level;
 public class ActProcessorCmdConsole implements GUIActionProcessor{
 
     @Override
-    public void process(Player player, String argument, GUIManager manager){
-        if(argument == null){
+    public void process(Player player, String[] arguments, GUIManager manager){
+        if(arguments.length == 0){
             Bukkit.getLogger().log(Level.WARNING, "Command from action 'CommandConsole' not found!");
             return;
         }
 
-        argument = manager.getBinder().bindValues(argument, player);
+        String argument = manager.getBinder().bindValues(arguments[0], player);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), argument);
     }
 }

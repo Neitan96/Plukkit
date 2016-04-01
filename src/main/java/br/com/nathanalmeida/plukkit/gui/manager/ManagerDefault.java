@@ -102,10 +102,10 @@ public class ManagerDefault implements GUIManager{
     }
 
     @Override
-    public void processAction(Player player, String command, String argument, InventoryClickEvent event){
+    public void processAction(Player player, String command, String[] arguments, InventoryClickEvent event){
         GUIActionProcessor processor = processors.get(command);
         if(processor != null)
-            processor.process(player, argument, this);
+            processor.process(player, arguments, this);
     }
 
 }

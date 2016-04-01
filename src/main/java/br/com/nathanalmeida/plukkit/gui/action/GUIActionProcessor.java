@@ -10,6 +10,6 @@ import org.bukkit.entity.Player;
  */
 public interface GUIActionProcessor{
 
-    void process(Player player, String argument, GUIManager manager);
+    void process(Player player, String[] arguments, GUIManager manager);
 
 }

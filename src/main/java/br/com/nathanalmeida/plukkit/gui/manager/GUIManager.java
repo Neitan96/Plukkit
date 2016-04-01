@@ -39,6 +39,6 @@ public interface GUIManager{
 
     void removeActionProcessor(String command, GUIActionProcessor processor);
 
-    void processAction(Player player, String command, String argument, InventoryClickEvent event);
+    void processAction(Player player, String command, String[] arguments, InventoryClickEvent event);
 
 }
