@@ -25,7 +25,7 @@ public class ActCommandDefault implements GUIActionCommand{
 
     @Override
     public void executeAction(Player player, InventoryClickEvent event){
-        if(player.hasPermission(permission))
+        if(permission == null || player.hasPermission(permission))
             manager.processAction(player, command, arguments, event);
     }
 
