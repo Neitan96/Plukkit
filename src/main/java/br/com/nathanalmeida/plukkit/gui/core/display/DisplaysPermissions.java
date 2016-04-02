@@ -14,9 +14,15 @@ import org.bukkit.inventory.ItemStack;
 public class DisplaysPermissions implements GUIDisplay{
 
     protected final DisplayPermission[] displays;
+    protected final GUIDisplay displayDefault;
+
+    public DisplaysPermissions(GUIDisplay displayDefault, DisplayPermission... displays){
+        this.displayDefault = displayDefault;
+        this.displays = displays;
+    }
 
     public DisplaysPermissions(DisplayPermission... displays){
-        this.displays = displays;
+        this(null, displays);
     }
 
     @Override
@@ -25,7 +31,11 @@ public class DisplaysPermissions implements GUIDisplay{
             ItemStack itemStack = display.renderDisplay(player, manager, page, button);
             if(itemStack != null) return itemStack;
         }
-        return null;
+
+        if(displayDefault != null)
+            return displayDefault.renderDisplay(player, manager, page, button);
+        else
+            return null;
     }
 
 }
