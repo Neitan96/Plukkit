@@ -38,7 +38,7 @@ public class PageDefault implements GUIPage{
         this.permission = permission;
         this.displayDefault = displayDefault;
     }
-    
+
 
     @Override
     public String getName(){
@@ -82,7 +82,7 @@ public class PageDefault implements GUIPage{
         }
 
         if(displayDefault != null){
-            for(int i = 0; i < inventory.getSize()-1; i++){
+            for(int i = 0; i < inventory.getSize(); i++){
                 ItemStack item = inventory.getItem(i);
                 if(item == null || item.getType() == Material.AIR)
                     inventory.setItem(i, displayDefault);
