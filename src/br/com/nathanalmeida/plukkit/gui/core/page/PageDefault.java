@@ -30,7 +30,7 @@ public class PageDefault implements GUIPage{
 
     protected final List<ButtonSlot> buttons = new ArrayList<>();
 
-    public PageDefault(GUIManager manager, String name, GUITitle title,
+    public PageDefault(String name, GUITitle title,
                        int size, String permission, ItemStack displayDefault){
         this.name = name;
         this.title = title;
