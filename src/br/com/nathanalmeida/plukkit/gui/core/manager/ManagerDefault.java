@@ -20,10 +20,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Project: Plukkit
@@ -160,7 +157,18 @@ public class ManagerDefault implements GUIManager, Listener{
 
     @Override
     public void closeAllInventories(){
-        for(Player player : Bukkit.getOnlinePlayers()){
+        Object onlinePlayers = Bukkit.getOnlinePlayers();
+        Player[] players;
+        //noinspection ConstantConditions
+        if(onlinePlayers instanceof Collection){
+            //noinspection unchecked
+            Collection<Player> playersCollection = (Collection<Player>) onlinePlayers;
+            players = playersCollection.toArray(new Player[playersCollection.size()]);
+        }else{
+            players = ((Player[]) onlinePlayers);
+        }
+
+        for(Player player : players){
 
             Inventory[] inventories = new Inventory[]{
                     player.getOpenInventory().getTopInventory(),
