@@ -11,6 +11,6 @@ import org.bukkit.command.CommandSender;
  */
 public interface CommandValidator{
 
-    boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments);
+    boolean validCommand(CommandSender sender, Command command, CommandArguments arguments);
 
 }

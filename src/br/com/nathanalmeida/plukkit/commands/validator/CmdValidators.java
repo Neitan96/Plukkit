@@ -16,7 +16,7 @@ public final class CmdValidators{
     public static CommandValidator argsMin(final int min){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return arguments.length() >= min;
             }
         };
@@ -25,7 +25,7 @@ public final class CmdValidators{
     public static CommandValidator argsMax(final int max){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return arguments.length() <= max;
             }
         };
@@ -34,7 +34,7 @@ public final class CmdValidators{
     public static CommandValidator argsRange(final int min, final int max){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return arguments.length() >= min && arguments.length() <= max;
             }
         };
@@ -43,7 +43,7 @@ public final class CmdValidators{
     public static CommandValidator senderType(final Class typeSender){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return sender.getClass().isAssignableFrom(typeSender);
             }
         };
@@ -60,7 +60,7 @@ public final class CmdValidators{
     public static CommandValidator senderIsOP(){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return sender.isOp();
             }
         };
@@ -69,7 +69,7 @@ public final class CmdValidators{
     public static CommandValidator senderNotOP(){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return !sender.isOp();
             }
         };
@@ -78,7 +78,7 @@ public final class CmdValidators{
     public static CommandValidator permission(final String permission){
         return new CommandValidator(){
             @Override
-            public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+            public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
                 return sender.hasPermission(permission);
             }
         };

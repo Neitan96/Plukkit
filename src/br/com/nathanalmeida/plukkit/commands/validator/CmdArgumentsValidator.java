@@ -27,7 +27,7 @@ public class CmdArgumentsValidator implements CommandValidator{
     }
 
     @Override
-    public boolean validCommand(CommandSender sender, Command command, String label, CommandArguments arguments){
+    public boolean validCommand(CommandSender sender, Command command, CommandArguments arguments){
         for(int i = 0; i < arguments.length(); i++){
             MessageItem<ArgumentValidator> messageItem = validators.get(i);
             if(messageItem == null ||
