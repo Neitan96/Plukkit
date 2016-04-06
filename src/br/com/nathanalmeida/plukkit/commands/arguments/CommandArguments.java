@@ -29,6 +29,10 @@ public class CommandArguments{
         return args.clone();
     }
 
+    public String getString(int index){
+        return args.length > index ? args[index] : null;
+    }
+
     /**
      * Obtem um OfflinePlayer de acordo com a index do argumento passado.
      * Irá obter o argumento de acordo com a index passada e depois pegar
