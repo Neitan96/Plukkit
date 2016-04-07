@@ -129,7 +129,7 @@ public class ManagerDefault implements GUIManager, Listener{
     public void processAction(Player player, String command, String[] arguments, InventoryClickEvent event){
         GUIActionProcessor processor = processors.get(command);
         if(processor != null)
-            processor.process(player, arguments, this);
+            processor.process(this, player, arguments);
     }
 
 
