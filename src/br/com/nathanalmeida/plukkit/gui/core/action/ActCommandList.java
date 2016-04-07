@@ -1,7 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.action;
 
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import br.com.nathanalmeida.plukkit.gui.core.holder.InventoryButtonClick;
 
 /**
  * Project: Plukkit
@@ -17,9 +16,9 @@ public class ActCommandList implements GUIActionCommand{
     }
 
     @Override
-    public void executeAction(Player player, InventoryClickEvent event){
+    public void executeAction(InventoryButtonClick click){
         for(GUIActionCommand action : actions){
-            action.executeAction(player, event);
+            action.executeAction(click);
         }
     }
 

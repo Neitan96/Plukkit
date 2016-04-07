@@ -1,7 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.action;
 
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import br.com.nathanalmeida.plukkit.gui.core.holder.InventoryButtonClick;
 
 /**
  * Project: Plukkit
@@ -10,6 +9,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
  */
 public interface GUIActionCommand{
 
-    void executeAction(Player player, InventoryClickEvent event);
+    void executeAction(InventoryButtonClick click);
 
 }

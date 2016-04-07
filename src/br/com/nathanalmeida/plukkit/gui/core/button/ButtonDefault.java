@@ -2,10 +2,10 @@ package br.com.nathanalmeida.plukkit.gui.core.button;
 
 import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionCommand;
 import br.com.nathanalmeida.plukkit.gui.core.display.GUIDisplay;
+import br.com.nathanalmeida.plukkit.gui.core.holder.InventoryButtonClick;
 import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -39,10 +39,10 @@ public class ButtonDefault implements GUIButton{
     }
 
     @Override
-    public void onClick(Player player, InventoryClickEvent event){
-        if(permission == null || player.hasPermission(permission)){
-            if(closeOnClick) player.closeInventory();
-            if(actionCommand != null) actionCommand.executeAction(player, event);
+    public void onClick(InventoryButtonClick click){
+        if(permission == null || click.getPlayer().hasPermission(permission)){
+            if(closeOnClick) click.getPlayer().closeInventory();
+            if(actionCommand != null) actionCommand.executeAction(click);
         }
     }
 

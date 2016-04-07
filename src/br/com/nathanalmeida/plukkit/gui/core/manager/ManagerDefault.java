@@ -7,8 +7,8 @@ import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionProcessor;
 import br.com.nathanalmeida.plukkit.gui.core.binder.BinderPlayerInfos;
 import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.binder.MultiBinder;
-import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
 import br.com.nathanalmeida.plukkit.gui.core.holder.GUIInventoryHolder;
+import br.com.nathanalmeida.plukkit.gui.core.holder.InventoryButtonClick;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -148,10 +148,10 @@ public class ManagerDefault implements GUIManager, Listener{
 
         event.setCancelled(true);
 
-        GUIButton button = holder.getButton(event.getSlot());
+        InventoryButtonClick click = new InventoryButtonClick(holder, event);
 
-        if(button != null)
-            button.onClick(((Player) event.getWhoClicked()), event);
+        if(click.getButtonClicked() != null)
+            click.getButtonClicked().onClick(click);
 
     }
 

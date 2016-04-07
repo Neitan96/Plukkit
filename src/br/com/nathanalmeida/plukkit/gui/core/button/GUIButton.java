@@ -1,9 +1,9 @@
 package br.com.nathanalmeida.plukkit.gui.core.button;
 
+import br.com.nathanalmeida.plukkit.gui.core.holder.InventoryButtonClick;
 import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -15,6 +15,6 @@ public interface GUIButton{
 
     ItemStack makeDisplay(Player player, GUIManager manager, GUIPage page);
 
-    void onClick(Player player, InventoryClickEvent event);
+    void onClick(InventoryButtonClick click);
 
 }

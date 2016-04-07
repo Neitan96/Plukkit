@@ -15,7 +15,7 @@ import java.util.logging.Level;
 public class ActProcessorToPage implements GUIActionProcessor{
 
     @Override
-    public void process(Player player, String[] arguments, GUIManager manager){
+    public void process(GUIManager manager, Player player, String[] arguments){
         if(arguments.length == 0){
             Bukkit.getLogger().log(Level.WARNING, "Command from action 'ToPage' not found!");
             return;
