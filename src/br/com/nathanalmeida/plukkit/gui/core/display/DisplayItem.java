@@ -15,19 +15,29 @@ import java.util.List;
  * Author: Neitan96
  * Since: 29/03/2016 22:07
  */
-public class ItemStackDisplay implements GUIDisplay{
+public class DisplayItem implements GUIDisplay{
 
     protected final ItemStack itemStack;
     protected final GUIBinder binder;
+    protected final String permission;
 
 
-    public ItemStackDisplay(ItemStack itemStack){
-        this(itemStack, null);
-    }
-
-    public ItemStackDisplay(ItemStack itemStack, GUIBinder binder){
+    public DisplayItem(ItemStack itemStack, GUIBinder binder, String permission){
         this.itemStack = itemStack;
         this.binder = binder;
+        this.permission = permission;
+    }
+
+    public DisplayItem(ItemStack itemStack, GUIBinder binder){
+        this(itemStack, binder, null);
+    }
+
+    public DisplayItem(ItemStack itemStack, String permission){
+        this(itemStack, null, permission);
+    }
+
+    public DisplayItem(ItemStack itemStack){
+        this(itemStack, null, null);
     }
 
 
