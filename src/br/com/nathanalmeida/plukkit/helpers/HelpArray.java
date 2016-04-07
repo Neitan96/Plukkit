@@ -29,4 +29,8 @@ public final class HelpArray{
         return joinString(array, ", ");
     }
 
+    public static String[] make(String... itens){
+        return itens;
+    }
+
 }
