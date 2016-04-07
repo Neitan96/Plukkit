@@ -27,6 +27,7 @@ public class PageBuilder implements ButtonAdder{
     protected int size = -1;
     protected String permission;
     protected ItemStack itemDefault;
+    protected boolean ishome = false;
 
 
     public PageBuilder(GUIBinder binder, PageAdder adder, String name){
@@ -67,6 +68,12 @@ public class PageBuilder implements ButtonAdder{
         return this;
     }
 
+
+    public PageBuilder isHome(){
+        this.ishome = true;
+        return this;
+    }
+
     @Override
     public void addButton(GUIButton button){
         this.buttons.add(button);
@@ -88,7 +95,7 @@ public class PageBuilder implements ButtonAdder{
         }
 
         PageDefault page = new PageDefault(name, title, size, permission, itemDefault);
-        adder.addPage(page);
+        adder.addPage(page, ishome);
 
         return this;
     }

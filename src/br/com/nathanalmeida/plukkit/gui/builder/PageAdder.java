@@ -9,6 +9,6 @@ import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
  */
 public interface PageAdder{
 
-    void addPage(GUIPage page);
+    void addPage(GUIPage page, boolean isHome);
 
 }
