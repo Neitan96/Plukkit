@@ -4,16 +4,12 @@ import br.com.nathanalmeida.plukkit.commands.arguments.CommandArguments;
 import br.com.nathanalmeida.plukkit.commands.validator.CommandValidator;
 import br.com.nathanalmeida.plukkit.message.message.MessageItem;
 import br.com.nathanalmeida.plukkit.message.message.PlukMessage;
-import br.com.nathanalmeida.plukkit.message.message.PlukMessageDefault;
-import br.com.nathanalmeida.plukkit.message.tag.TagManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Project: Plukkit
@@ -23,46 +19,13 @@ import java.util.Map;
 public abstract class ValidatorCmdExecutor implements CommandExecutor{
 
     protected final List<MessageItem<CommandValidator>> validators = new ArrayList<>();
-    protected final Map<String, Object> commandProperties;
 
 
-    public ValidatorCmdExecutor(Map<String, Object> commandProperties){
-        this.commandProperties = commandProperties;
-    }
-
-    public ValidatorCmdExecutor(JavaPlugin plugin, String commmandName){
-        this(plugin.getDescription().getCommands().get(commmandName));
-    }
-
-
-    protected void addValidator(CommandValidator validator, PlukMessage message){
+    protected final void addValidator(CommandValidator validator, PlukMessage message){
         validators.add(new MessageItem<>(validator, message));
     }
 
-    protected void addValidator(CommandValidator validator, String messageKey, TagManager tags){
-        Object message = commandProperties.get(messageKey);
-        String[] messages = new String[0];
-
-        if(message instanceof List){
-            //noinspection unchecked
-            messages = ((List<String>) message).toArray(new String[0]);
-
-        }else if(message != null){
-            messages = new String[]{message.toString()};
-        }
-
-        addValidator(validator, new PlukMessageDefault(messages, tags));
-    }
-
-    protected void addValidator(CommandValidator validator, String messageKey, TagManager tags, String... messageDef){
-        if(commandProperties.containsKey(messageKey))
-           addValidator(validator, messageKey, tags);
-        else
-            addValidator(validator, new PlukMessageDefault(messageDef, tags));
-    }
-
-
-    protected PlukMessage getErrorValid(CommandSender sender, Command command, CommandArguments arguments){
+    protected final PlukMessage getErrorValid(CommandSender sender, Command command, CommandArguments arguments){
         for(MessageItem<CommandValidator> validator : validators){
             if(!validator.getItem().validCommand(sender, command, arguments))
                 return validator.getMessage();
