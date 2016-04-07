@@ -30,7 +30,7 @@ import java.util.*;
 public class ManagerDefault implements GUIManager, Listener{
 
     protected final JavaPlugin plugin;
-    protected final MultiBinder binders = new MultiBinder();
+    protected final MultiBinder binders;
 
     protected final Map<String, GUIActionProcessor> processors = new HashMap<>();
 
@@ -38,8 +38,9 @@ public class ManagerDefault implements GUIManager, Listener{
     protected GUIPage pageHome = null;
 
 
-    public ManagerDefault(JavaPlugin plugin){
+    public ManagerDefault(JavaPlugin plugin, MultiBinder binders){
         this.plugin = plugin;
+        this.binders = binders;
 
         addActionProcessor("ToPage", new ActProcessorToPage());
         addActionProcessor("CommandPlayer", new ActProcessorCmdPlayer());
@@ -48,6 +49,10 @@ public class ManagerDefault implements GUIManager, Listener{
         addBinder(new BinderPlayerInfos());
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
+
+    public ManagerDefault(JavaPlugin plugin){
+        this(plugin, new MultiBinder());
     }
 
 
