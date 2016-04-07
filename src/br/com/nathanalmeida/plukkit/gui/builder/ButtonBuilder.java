@@ -3,11 +3,11 @@ package br.com.nathanalmeida.plukkit.gui.builder;
 import br.com.nathanalmeida.plukkit.gui.core.action.ActCommandDefault;
 import br.com.nathanalmeida.plukkit.gui.core.action.ActCommandList;
 import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionCommand;
+import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.button.ButtonDefault;
+import br.com.nathanalmeida.plukkit.gui.core.display.DisplayItem;
 import br.com.nathanalmeida.plukkit.gui.core.display.DisplayList;
 import br.com.nathanalmeida.plukkit.gui.core.display.GUIDisplay;
-import br.com.nathanalmeida.plukkit.gui.core.display.DisplayItem;
-import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ButtonBuilder{
 
-    protected final GUIManager manager;
+    protected final GUIBinder binder;
     protected final ButtonAdder adder;
 
     protected List<GUIActionCommand> actionsCommand = new ArrayList<>();
@@ -29,8 +29,8 @@ public class ButtonBuilder{
     protected String permission = null;
 
 
-    public ButtonBuilder(GUIManager manager, ButtonAdder adder){
-        this.manager = manager;
+    public ButtonBuilder(GUIBinder binder, ButtonAdder adder){
+        this.binder = binder;
         this.adder = adder;
     }
 
@@ -41,23 +41,23 @@ public class ButtonBuilder{
     }
 
     public ButtonBuilder addAction(String command){
-        addAction(new ActCommandDefault(manager, command, null, null));
+        addAction(new ActCommandDefault(command, null, null));
         return this;
     }
 
     public ButtonBuilder addAction(String command, String... arguments){
-        addAction(new ActCommandDefault(manager, command, arguments, null));
+        addAction(new ActCommandDefault(command, arguments, null));
         return this;
     }
 
     public ButtonBuilder addAction(String permission, String command, String... arguments){
-        addAction(new ActCommandDefault(manager, command, arguments, permission));
+        addAction(new ActCommandDefault(command, arguments, permission));
         return this;
     }
 
     public ButtonBuilder addAction(String permission, boolean lastIsDef, String command, String... arguments){
         GUIActionCommand lastAction = actionsCommand.remove(actionsCommand.size() - 1);
-        addAction(new ActCommandDefault(manager, command, arguments, permission, lastAction));
+        addAction(new ActCommandDefault(command, arguments, permission, lastAction));
         return this;
     }
 
@@ -68,7 +68,7 @@ public class ButtonBuilder{
     }
 
     public ButtonBuilder addDisplay(ItemStack itemStack, String permission){
-        return addDisplay(new DisplayItem(itemStack, manager.getBinder(), permission));
+        return addDisplay(new DisplayItem(itemStack, binder, permission));
     }
 
     public ButtonBuilder addDisplay(ItemStack itemStack){

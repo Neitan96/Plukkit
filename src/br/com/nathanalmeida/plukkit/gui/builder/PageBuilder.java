@@ -1,7 +1,7 @@
 package br.com.nathanalmeida.plukkit.gui.builder;
 
+import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
-import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
 import br.com.nathanalmeida.plukkit.gui.core.page.PageDefault;
 import br.com.nathanalmeida.plukkit.gui.core.page.title.GUITitle;
 import br.com.nathanalmeida.plukkit.gui.core.page.title.TitleDefault;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class PageBuilder implements ButtonAdder{
 
-    protected final GUIManager manager;
+    protected final GUIBinder binder;
     protected final PageAdder adder;
     protected final String name;
 
@@ -29,8 +29,8 @@ public class PageBuilder implements ButtonAdder{
     protected ItemStack itemDefault;
 
 
-    public PageBuilder(GUIManager manager, PageAdder adder, String name){
-        this.manager = manager;
+    public PageBuilder(GUIBinder binder, PageAdder adder, String name){
+        this.binder = binder;
         this.adder = adder;
         this.name = name;
     }
@@ -42,7 +42,7 @@ public class PageBuilder implements ButtonAdder{
     }
 
     public PageBuilder addTitle(String title, String permission){
-        return addTitle(new TitleDefault(title, manager.getBinder(), permission));
+        return addTitle(new TitleDefault(title, binder, permission));
     }
 
     public PageBuilder addTitle(String title){
@@ -73,7 +73,7 @@ public class PageBuilder implements ButtonAdder{
     }
 
     public ButtonBuilder addButton(){
-        return new ButtonBuilder(manager, this);
+        return new ButtonBuilder(binder, this);
     }
 
 
