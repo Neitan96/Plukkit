@@ -43,6 +43,9 @@ public class DisplayItem implements GUIDisplay{
 
     @Override
     public ItemStack renderDisplay(Player player, GUIManager manager, GUIPage page, GUIButton button){
+        if(permission != null && !player.hasPermission(permission))
+            return null;
+
         ItemStack itemStack = this.itemStack.clone();
         ItemMeta itemMeta = itemStack.getItemMeta();
 
