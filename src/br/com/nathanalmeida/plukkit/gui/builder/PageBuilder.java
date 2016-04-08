@@ -1,7 +1,9 @@
 package br.com.nathanalmeida.plukkit.gui.builder;
 
 import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
+import br.com.nathanalmeida.plukkit.gui.core.button.ButtonSlot;
 import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
+import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import br.com.nathanalmeida.plukkit.gui.core.page.PageDefault;
 import br.com.nathanalmeida.plukkit.gui.core.page.title.GUITitle;
 import br.com.nathanalmeida.plukkit.gui.core.page.title.TitleDefault;
@@ -16,23 +18,20 @@ import java.util.List;
  * Author: Neitan96
  * Since: 07/04/2016 00:43
  */
-public class PageBuilder implements ButtonAdder{
+public class PageBuilder{
 
     protected final GUIBinder binder;
-    protected final PageAdder adder;
     protected final String name;
 
     protected List<GUITitle> titles = new ArrayList<>();
-    protected List<GUIButton> buttons = new ArrayList<>();
+    protected List<ButtonSlot> buttons = new ArrayList<>();
     protected int size = -1;
     protected String permission;
     protected ItemStack itemDefault;
-    protected boolean ishome = false;
 
 
-    public PageBuilder(GUIBinder binder, PageAdder adder, String name){
+    public PageBuilder(GUIBinder binder, String name){
         this.binder = binder;
-        this.adder = adder;
         this.name = name;
     }
 
@@ -69,22 +68,12 @@ public class PageBuilder implements ButtonAdder{
     }
 
 
-    public PageBuilder isHome(){
-        this.ishome = true;
-        return this;
-    }
-
-    @Override
-    public void addButton(GUIButton button){
-        this.buttons.add(button);
-    }
-
-    public ButtonBuilder addButton(){
-        return new ButtonBuilder(binder, this);
+    public void addButton(int slot, GUIButton button){
+        this.buttons.add(new ButtonSlot(slot, button));
     }
 
 
-    public PageBuilder buildPage(){
+    public GUIPage buildPage(){
         GUITitle title = null;
         if(titles.size() == 1){
             title = titles.get(0);
@@ -94,9 +83,6 @@ public class PageBuilder implements ButtonAdder{
             title = new TitleList(titles);
         }
 
-        PageDefault page = new PageDefault(name, title, size, permission, itemDefault);
-        adder.addPage(page, ishome);
-
-        return this;
+        return new PageDefault(name, title, size, permission, itemDefault);
     }
 }

@@ -18,7 +18,7 @@ import java.util.Map;
  * Author: Neitan96
  * Since: 07/04/2016 03:45
  */
-public class GUIBuilder implements PageAdder{
+public class GUIBuilder{
 
     protected final JavaPlugin plugin;
     protected final MultiBinder binder = new MultiBinder();
@@ -43,14 +43,9 @@ public class GUIBuilder implements PageAdder{
         return this;
     }
 
-    @Override
     public void addPage(GUIPage page, boolean setPageHome){
         addPage(page);
         pageHome = page;
-    }
-
-    public PageBuilder addPage(String name){
-        return new PageBuilder(binder, this, name);
     }
 
     public GUIBuilder addActionProcessor(String command, GUIActionProcessor processor){

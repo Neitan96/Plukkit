@@ -5,6 +5,7 @@ import br.com.nathanalmeida.plukkit.gui.core.action.ActCommandList;
 import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionCommand;
 import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.button.ButtonDefault;
+import br.com.nathanalmeida.plukkit.gui.core.button.GUIButton;
 import br.com.nathanalmeida.plukkit.gui.core.display.DisplayItem;
 import br.com.nathanalmeida.plukkit.gui.core.display.DisplayList;
 import br.com.nathanalmeida.plukkit.gui.core.display.GUIDisplay;
@@ -21,7 +22,6 @@ import java.util.List;
 public class ButtonBuilder{
 
     protected final GUIBinder binder;
-    protected final ButtonAdder adder;
 
     protected List<GUIActionCommand> actionsCommand = new ArrayList<>();
     protected List<GUIDisplay> displays = new ArrayList<>();
@@ -29,9 +29,8 @@ public class ButtonBuilder{
     protected String permission = null;
 
 
-    public ButtonBuilder(GUIBinder binder, ButtonAdder adder){
+    public ButtonBuilder(GUIBinder binder){
         this.binder = binder;
-        this.adder = adder;
     }
 
 
@@ -90,7 +89,7 @@ public class ButtonBuilder{
         return this;
     }
 
-    public ButtonBuilder buildButton(){
+    public GUIButton getButton(){
         GUIActionCommand actionCommand = null;
         if(actionsCommand.size() == 1){
             actionCommand = actionsCommand.get(0);
@@ -106,11 +105,7 @@ public class ButtonBuilder{
             GUIDisplay[] displays = this.displays.toArray(new GUIDisplay[this.displays.size()]);
             display = new DisplayList(displays);
         }
-
-        ButtonDefault button = new ButtonDefault(display, closeOnClick, actionCommand, permission);
-        adder.addButton(button);
-
-        return this;
+        return new ButtonDefault(display, closeOnClick, actionCommand, permission);
     }
 
 }
