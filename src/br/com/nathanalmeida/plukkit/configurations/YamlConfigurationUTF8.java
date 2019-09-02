@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
 /**
  * Created by Neitan96 on 01/10/15.
  */
-public class YamlConfigurationUT8 extends YamlConfiguration {
+public class YamlConfigurationUTF8 extends YamlConfiguration {
 
     /**
      * Charset da config
