@@ -13,7 +13,7 @@ import java.io.InputStream;
  * Since: 09/Jan/2016 23:03
  * Created by Neitan96 on 09/01/16.
  */
-public class PlukConfiguration extends YamlConfigurationUT8{
+public class PlukConfiguration extends YamlConfigurationUTF8{
 
     /**
      * Arquivo da config
