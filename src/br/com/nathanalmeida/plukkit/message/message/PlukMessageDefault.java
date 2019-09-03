@@ -44,161 +44,24 @@ public class PlukMessageDefault implements PlukMessage{
     }
 
     @Override
+    public String[] getMessagesPrepared(boolean toConsole, boolean error){
+        String[] message = this.message.clone();
+        String tag = tags.getTag(toConsole, error);
+        for(int i = 0; i < message.length; i++){
+            if(binder == null)
+                message[i] = tag.concat(message[i]);
+            else
+                message[i] = tag.concat(binder.bindDefaults(message[i]));
+        }
+        return message;
+    }
+
+    @Override
     public PlukMessage bind(String... binds){
         if(binder == null)
             binder = new MessageBinderDefault();
         String[] newMessage = binder.bindValues(message.clone(), binds);
         return new PlukMessageDefault(newMessage, binder, tags);
-    }
-
-
-    @Override
-    public void sendTo(CommandSender target){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            target.sendMessage(tag.concat(line));
-        }
-    }
-
-    @Override
-    public void sendTo(CommandSender[] targets){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-    @Override
-    public void sendTo(Collection<CommandSender> targets){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-    @Override
-    public void sendErrorTo(CommandSender target){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            target.sendMessage(tag.concat(line));
-        }
-    }
-
-    @Override
-    public void sendErrorTo(CommandSender[] targets){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-    @Override
-    public void sendErrorTo(Collection<CommandSender> targets){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-
-    @Override
-    public void sendToConsole(){
-        String tag = tags.getTag(true, false);
-        ConsoleCommandSender target = Bukkit.getConsoleSender();
-        for(String line : message){
-            target.sendMessage(tag.concat(line));
-        }
-    }
-
-    @Override
-    public void sendErrorToConsole(){
-        String tag = tags.getTag(true, true);
-        ConsoleCommandSender target = Bukkit.getConsoleSender();
-        for(String line : message){
-            target.sendMessage(tag.concat(line));
-        }
-    }
-
-
-    @Override
-    public void sendToPlayers(Player[] targets){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-    @Override
-    public void sendToPlayers(Collection<Player> targets){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-    @Override
-    public void sendErrorToPlayers(Player[] targets){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-    @Override
-    public void sendErrorToPlayers(Collection<Player> targets){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            for(CommandSender target : targets){
-                target.sendMessage(tag.concat(line));
-            }
-        }
-    }
-
-
-    @Override
-    public void sendBroadcast(String permission){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            Bukkit.broadcast(tag.concat(line), permission);
-        }
-    }
-
-    @Override
-    public void sendBroadcast(){
-        String tag = tags.getTag(false, false);
-        for(String line : message){
-            Bukkit.broadcastMessage(tag.concat(line));
-        }
-    }
-
-    @Override
-    public void sendErrorBroadcast(String permission){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            Bukkit.broadcast(tag.concat(line), permission);
-        }
-    }
-
-    @Override
-    public void sendErrorBroadcast(){
-        String tag = tags.getTag(false, true);
-        for(String line : message){
-            Bukkit.broadcastMessage(tag.concat(line));
-        }
     }
 
     @Override
