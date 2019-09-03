@@ -38,8 +38,6 @@ public class YamlConfigurationUTF8 extends YamlConfiguration {
      * @throws IOException
      * @throws InvalidConfigurationException
      */
-    @SuppressWarnings("deprecation")
-    @Override
     public void load(InputStream stream) throws IOException, InvalidConfigurationException {
         Validate.notNull(stream, "InputStream não pode ser nulo!");
 
