@@ -15,6 +15,17 @@ import java.util.Map;
 public interface MessageBinder extends PlukConfigLoader{
 
     /**
+     * Faz o bind somente de uma key e um valor.
+     * Essa função não faz os binds padrões.
+     *
+     * @param msg Mensagem para fazer o bind.
+     * @param key Chave do do bind
+     * @param value Valor do bind.
+     * @return Mensagem feita o bind.
+     */
+    String bindValue(String msg, String key, String value);
+
+    /**
      * Adiciona binds padões.
      * Binds padrões são feitos em qualquer String que passe pela classe.
      *
@@ -36,7 +47,15 @@ public interface MessageBinder extends PlukConfigLoader{
      * @param msg As mensagens
      * @return As mensagens com os binds, caso a mensagem for nula retornara a null
      */
-    String[] bindDefaults(String[] msg);
+    default String[] bindDefaults(String[] msg){
+        if(msg == null) return null;
+
+        for (int i = 0; i < msg.length; i++){
+            msg[i] = bindDefaults(msg[i]);
+        }
+
+        return msg;
+    }
 
     /**
      * Faz binds na mensagem.
@@ -48,7 +67,14 @@ public interface MessageBinder extends PlukConfigLoader{
      *              bindValues(MENSAGEM, "chave1", "valor1", "chave2", "valor2");
      * @return A mensagem com os binds, caso a mensagem seja nula retornara a null.
      */
-    String bindValues(String msg, String... binds);
+    default String bindValues(String msg, String... binds){
+        if(msg == null) return null;
+
+        for(int  i = 1; i < binds.length; i = i+2)
+            msg = bindValue(msg, binds[i-1], binds[i]);
+
+        return bindDefaults(msg);
+    }
 
     /**
      * Faz binds nas mensagens.
@@ -60,7 +86,15 @@ public interface MessageBinder extends PlukConfigLoader{
      *              bindValues(MENSAGEM, "chave1", "valor1", "chave2", "valor2");
      * @return As mensagens com os binds, caso a mensagem seja nula retornara a null.
      */
-    String[] bindValues(String[] msg, String... binds);
+    default String[] bindValues(String[] msg, String... binds){
+        if(msg == null) return null;
+
+        for (int i = 0; i < msg.length; i++){
+            msg[i] = bindValues(msg[i], binds);
+        }
+
+        return msg;
+    }
 
     /**
      * Faz binds na mensagem.
@@ -69,7 +103,14 @@ public interface MessageBinder extends PlukConfigLoader{
      * @param binds Os binds para fazer
      * @return A mensagem com os binds, caso a mensagem seja nula retornara a null.
      */
-    String bindValues(String msg, Map<String, String> binds);
+    default String bindValues(String msg, Map<String, String> binds){
+        if(msg == null) return null;
+
+        for (Map.Entry<String, String> bind : binds.entrySet())
+            msg = bindValue(msg, bind.getKey(), bind.getValue());
+
+        return bindValues(msg);
+    }
 
     /**
      * Faz binds nas mensagens.
@@ -78,6 +119,11 @@ public interface MessageBinder extends PlukConfigLoader{
      * @param binds Os binds para fazer
      * @return As mensagens com os binds, caso a mensagem seja nula retornara a null.
      */
-    String[] bindValues(String[] msgs, Map<String, String> binds);
+    default String[] bindValues(String[] msgs, Map<String, String> binds){
+        for (int i = 0; i < msgs.length; i++){
+            msgs[i] = bindValues(msgs[i], binds);
+        }
+        return msgs;
+    }
 
 }

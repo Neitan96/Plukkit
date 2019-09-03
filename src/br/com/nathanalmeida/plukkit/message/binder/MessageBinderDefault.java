@@ -23,7 +23,7 @@ public class MessageBinderDefault implements MessageBinder{
     public List<String> bindsDefault = null;
 
 
-    protected String bindValue(String str, String key, String value){
+    public String bindValue(String str, String key, String value){
         return str != null && key != null && value != null ?
                 str.replace(BINDS_PREFIX +key+ BINDS_SUFIX, value) : str;
     }
@@ -46,58 +46,6 @@ public class MessageBinderDefault implements MessageBinder{
 
         return msg;
     }
-
-    @Override
-    public String[] bindDefaults(String[] msg){
-        if(msg == null) return null;
-
-        for (int i = 0; i < msg.length; i++){
-            msg[i] = bindDefaults(msg[i]);
-        }
-
-        return msg;
-    }
-
-
-    @Override
-    public String bindValues(String msg, String... binds){
-        if(msg == null) return null;
-
-        for(int  i = 1; i < binds.length; i = i+2)
-            msg = bindValue(msg, binds[i-1], binds[i]);
-
-        return bindDefaults(msg);
-    }
-
-    @Override
-    public String[] bindValues(String[] msg, String... binds){
-        if(msg == null) return null;
-
-        for (int i = 0; i < msg.length; i++){
-            msg[i] = bindValues(msg[i], binds);
-        }
-
-        return msg;
-    }
-
-    @Override
-    public String bindValues(String msg, Map<String, String> binds){
-        if(msg == null) return null;
-
-        for (Map.Entry<String, String> bind : binds.entrySet())
-            msg = bindValue(msg, bind.getKey(), bind.getValue());
-
-        return bindValues(msg);
-    }
-
-    @Override
-    public String[] bindValues(String[] msgs, Map<String, String> binds){
-        for (int i = 0; i < msgs.length; i++){
-            msgs[i] = bindValues(msgs[i], binds);
-        }
-        return msgs;
-    }
-
 
     @Override
     public void loadFromConfig(ConfigurationSection section){
