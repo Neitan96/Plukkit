@@ -44,11 +44,6 @@ public class TagManagerDefault implements TagManager{
     }
 
     @Override
-    public String getTagToPlayer(boolean error){
-        return error ? getTagToPlayerError() : getTagToPlayer();
-    }
-
-    @Override
     public String getTagToConsole(){
         return tagToConsole == null ? getTagToPlayer() : tagToConsole;
     }
@@ -58,16 +53,6 @@ public class TagManagerDefault implements TagManager{
         return tagToConsoleError == null ?
                 (tagToConsole == null ? getTagToPlayerError() : tagToConsole) :
                 tagToConsoleError;
-    }
-
-    @Override
-    public String getTagToConsole(boolean error){
-        return error ? getTagToConsoleError() : getTagToConsole();
-    }
-
-    @Override
-    public String getTag(boolean toConsole, boolean error){
-        return toConsole ? getTagToConsole(error) : getTagToPlayer(error);
     }
 
 }

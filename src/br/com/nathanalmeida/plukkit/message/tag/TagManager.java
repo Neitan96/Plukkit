@@ -14,16 +14,22 @@ public interface TagManager{
 
     String getTagToPlayerError();
 
-    String getTagToPlayer(boolean error);
+    default String getTagToPlayer(boolean error){
+        return error ? getTagToPlayerError() : getTagToPlayer();
+    }
 
 
     String getTagToConsole();
 
     String getTagToConsoleError();
 
-    String getTagToConsole(boolean error);
+    default String getTagToConsole(boolean error){
+        return error ? getTagToConsoleError() : getTagToConsole();
+    }
 
 
-    String getTag(boolean toConsole, boolean error);
+    default String getTag(boolean toConsole, boolean error){
+        return toConsole ? getTagToConsole(error) : getTagToPlayer(error);
+    }
 
 }
