@@ -62,8 +62,9 @@ public class MessageManagerDefault implements MessageManager{
 
     @Override
     public void loadFromConfig(ConfigurationSection section){
-        for(String key : section.getKeys(true)){
+        Map<String, String[]> messages = new HashMap<>();
 
+        for(String key : section.getKeys(true)){
             if(section.isConfigurationSection(key)) continue;
 
             if(key.startsWith(DEFAULT_PATH_BINDS+".")){
@@ -72,20 +73,21 @@ public class MessageManagerDefault implements MessageManager{
                 binder.addDefaultBinds(key, value);
             }else{
                 String[] value;
-
                 if(section.isList(key)){
                     List<String> list = section.getStringList(key);
                     value = list.toArray(new String[list.size()]);
                 }else{
                     value = new String[]{section.get(key).toString()};
                 }
-
-                PlukMessage message = new PlukMessageDefault(value, binder, tags);
-
-                messages.put(key, message);
+                messages.put(key, value);
             }
-
         }
+
+        for(Map.Entry<String, String[]> entry : messages.entrySet()){
+            this.messages.put(entry.getKey(),
+                    new PlukMessageDefault(binder.bindDefaults(entry.getValue()), this.binder, this.tags));
+        }
+
     }
 
 }
