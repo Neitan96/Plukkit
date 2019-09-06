@@ -56,7 +56,7 @@ public class GUIInvButtonClickEvent extends Event implements Cancellable{
 		return holder.getManager();
 	}
 
-	public GUIButton getButton(){
+	public GUIButton getButtonClicked(){
 		return button;
 	}
 
