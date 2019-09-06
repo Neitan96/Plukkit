@@ -1,5 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.manager;
 
+import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -19,6 +20,8 @@ public interface GUIManager extends Listener{
 	JavaPlugin getPlugin();
 
 	List<GUIPage> getPages();
+
+	List<GUIBinder> getBinders();
 
 	boolean setHome(GUIPage page);
 
