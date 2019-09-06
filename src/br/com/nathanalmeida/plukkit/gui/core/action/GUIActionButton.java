@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
  * Author: Neitan96
  * Since: 04/09/2019 20:28
  */
-public interface GUIAction extends PlukConfigLoader{
+public interface GUIActionButton extends PlukConfigLoader{
 
 	String actionName();
 
-	void execute(GUIInvButtonClickEvent buttonClick);
+	String getArguments();
 
 }

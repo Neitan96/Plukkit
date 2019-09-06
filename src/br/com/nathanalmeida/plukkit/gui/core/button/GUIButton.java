@@ -1,10 +1,8 @@
 package br.com.nathanalmeida.plukkit.gui.core.button;
 
 import br.com.nathanalmeida.plukkit.configurations.features.PlukPermission;
-import br.com.nathanalmeida.plukkit.gui.core.action.GUIAction;
+import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionButton;
 import br.com.nathanalmeida.plukkit.loaders.PlukConfigLoader;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
@@ -31,6 +29,6 @@ public interface GUIButton extends PlukConfigLoader{
 
 	PlukPermission getPermission();
 
-	List<GUIAction> getActions();
+	List<GUIActionButton> getActions();
 
 }
