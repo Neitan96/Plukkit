@@ -1,0 +1,9 @@
+name: 'Plukkit'
+version: 0.1
+description: 'API para facilitar a criação de plugins.'
+
+author: 'Neitan96 (Nathan Almeida)'
+website: 'http://www.nathanalmeida.com.br/'
+
+main: 'br.com.nathanalmeida.plukkit.Plukkit'
+load: 'STARTUP'
