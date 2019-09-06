@@ -13,6 +13,6 @@ public interface GUIActionButton extends PlukConfigLoader{
 
 	String actionName();
 
-	String getArguments();
+	String[] getArguments();
 
 }
