@@ -1,6 +1,7 @@
 package br.com.nathanalmeida.plukkit.gui.core.manager;
 
 import br.com.nathanalmeida.plukkit.gui.core.binder.GUIBinder;
+import br.com.nathanalmeida.plukkit.gui.core.page.GUIInventoryHolder;
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -22,6 +23,20 @@ public interface GUIManager extends Listener{
 	List<GUIPage> getPages();
 
 	List<GUIBinder> getBinders();
+
+	default String bindValues(String text, GUIInventoryHolder holder){
+		for(GUIBinder binder : getBinders()){
+			text = binder.binderText(text, holder);
+		}
+		return text;
+	}
+
+	default String[] bondValues(String[] text, GUIInventoryHolder holder){
+		for(int line = 0; line < text.length; line++){
+			text[line] = bindValues(text[line], holder);
+		}
+		return text;
+	}
 
 	boolean setHome(GUIPage page);
 
