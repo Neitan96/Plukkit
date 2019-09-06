@@ -15,8 +15,6 @@ import java.util.Map;
  */
 public class MessageBinderDefault implements MessageBinder{
 
-    public static final MessageBinder BINDER_DEFAULT = new MessageBinderDefault();
-
     public static final String BINDS_PREFIX = "{";
     public static final String BINDS_SUFIX = "}";
 
