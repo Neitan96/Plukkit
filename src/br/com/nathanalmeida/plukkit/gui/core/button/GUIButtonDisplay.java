@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
  * Author: Neitan96
  * Since: 04/09/2019 21:05
  */
-public interface GUIButtonDisplay extends PlukConfigLoader{
+public interface GUIButtonDisplay{
 
 	ItemStack makeButtonDisplay(Player player, GUIInventoryHolder holder);
 

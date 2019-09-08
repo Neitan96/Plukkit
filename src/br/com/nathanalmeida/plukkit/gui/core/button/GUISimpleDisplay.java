@@ -1,6 +1,7 @@
 package br.com.nathanalmeida.plukkit.gui.core.button;
 
 import br.com.nathanalmeida.plukkit.gui.core.page.GUIInventoryHolder;
+import br.com.nathanalmeida.plukkit.loaders.PlukConfigLoader;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -19,7 +20,7 @@ import java.util.Map;
  * Author: Neitan96
  * Since: 06/09/2019 19:22
  */
-public class GUISimpleDisplay implements GUIButtonDisplay{
+public class GUISimpleDisplay implements GUIButtonDisplay, PlukConfigLoader{
 
 	public String title;
 	public Material material = Material.STONE;
