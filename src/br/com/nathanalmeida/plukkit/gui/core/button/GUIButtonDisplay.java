@@ -1,7 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.button;
 
-import br.com.nathanalmeida.plukkit.gui.core.manager.GUIManager;
-import br.com.nathanalmeida.plukkit.gui.core.page.GUIPage;
+import br.com.nathanalmeida.plukkit.gui.core.page.GUIInventoryHolder;
 import br.com.nathanalmeida.plukkit.loaders.PlukConfigLoader;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -13,6 +12,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface GUIButtonDisplay extends PlukConfigLoader{
 
-	ItemStack makeButtonDisplay(Player player, GUIPage page, GUIManager manager);
+	ItemStack makeButtonDisplay(Player player, GUIInventoryHolder holder);
 
 }

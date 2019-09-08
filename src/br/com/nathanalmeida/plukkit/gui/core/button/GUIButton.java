@@ -11,7 +11,7 @@ import java.util.List;
  * Author: Neitan96
  * Since: 04/09/2019 20:27
  */
-public interface GUIButton extends PlukConfigLoader{
+public interface GUIButton{
 
 	String getName();
 

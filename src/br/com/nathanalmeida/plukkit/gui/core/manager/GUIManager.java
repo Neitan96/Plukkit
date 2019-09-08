@@ -31,7 +31,7 @@ public interface GUIManager extends Listener{
 		return text;
 	}
 
-	default String[] bondValues(String[] text, GUIInventoryHolder holder){
+	default String[] bindValues(String[] text, GUIInventoryHolder holder){
 		for(int line = 0; line < text.length; line++){
 			text[line] = bindValues(text[line], holder);
 		}
