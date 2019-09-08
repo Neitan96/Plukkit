@@ -22,12 +22,33 @@ import java.util.Map;
  */
 public class GUISimpleDisplay implements GUIButtonDisplay, PlukConfigLoader{
 
+	public Material material;
 	public String title;
-	public Material material = Material.STONE;
 	public byte data = 0;
 	public int amount = 1;
 	public String[] lore;
 	public Map<Enchantment, Integer> enchantments;
+
+	public GUISimpleDisplay(Material material, String title, byte data, int amount, String[] lore, Map<Enchantment, Integer> enchantments){
+		this.material = material == null ? Material.STONE : material;
+		this.title = title;
+		this.data = data < 0 ? 0 : data;
+		this.amount = Math.max(amount, 1);
+		this.lore = lore;
+		this.enchantments = enchantments;
+	}
+
+	public GUISimpleDisplay(Material material, String title, String... lore){
+		this(material, title, (byte) 0, 1, lore, null);
+	}
+
+	public GUISimpleDisplay(Material material, String title){
+		this(material, title, (String[]) null);
+	}
+
+	public GUISimpleDisplay(Material material){
+		this(material, null);
+	}
 
 	@Override
 	public ItemStack makeButtonDisplay(Player player, GUIInventoryHolder holder){
