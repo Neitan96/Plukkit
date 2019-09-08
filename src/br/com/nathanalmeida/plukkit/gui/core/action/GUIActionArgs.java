@@ -1,5 +1,6 @@
 package br.com.nathanalmeida.plukkit.gui.core.action;
 
+import br.com.nathanalmeida.plukkit.configurations.features.PlukPermission;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -10,10 +11,10 @@ import org.bukkit.configuration.ConfigurationSection;
 public class GUIActionArgs implements GUIActionButton{
 
 	private String actionName;
-	private String permission;
+	private PlukPermission permission;
 	private String[] arguments;
 
-	public GUIActionArgs(String actionName, String permission, String[] arguments){
+	public GUIActionArgs(String actionName, PlukPermission permission, String[] arguments){
 		this.actionName = actionName;
 		this.permission = permission;
 		this.arguments = arguments;
@@ -25,7 +26,7 @@ public class GUIActionArgs implements GUIActionButton{
 	}
 
 	@Override
-	public String getPermission(){
+	public PlukPermission getPermission(){
 		return permission;
 	}
 
