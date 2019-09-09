@@ -31,7 +31,7 @@ MainGui:
    # Caso esta função esteja ativada a GUI irá fechar quando clicar no botão.
    # Opcional, Padrão: false.
    CloseOnClick: true
-   Display: '@Inicio' # Usando o display acima.
+   Display: 'Inicio' # Usando o display acima.
    Title: 'Voltar' # Substituindo o title do display, Opcional.
    Lore: ['Início', 'Voltar para o início'] # Substituindo o lore do display, Opcional.
    # Ações do botão, alguns plugins também pode criar ações personalizadas
@@ -115,4 +115,4 @@ MainGui:
      CommandPlayer: 'time set 6000'
    Home:
     Slot: 8
-    Model: '@Home'
+    Model: 'Home'
