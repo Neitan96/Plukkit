@@ -1,15 +1,20 @@
 package br.com.nathanalmeida.plukkit.configurations.features;
 
+import br.com.nathanalmeida.plukkit.loaders.PlukConfigLoader;
+import br.com.nathanalmeida.plukkit.loaders.PlukObjectLoader;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Project: Plukkit
  * Author: Neitan96
  * Since: 05/09/2019 21:07
  */
-public class PlukPermission{
+public class PlukPermission implements PlukObjectLoader{
 
 	protected String[] permissions;
 
@@ -19,6 +24,10 @@ public class PlukPermission{
 
 	public PlukPermission(String permission){
 		this(new String[]{permission});
+	}
+
+	public PlukPermission(Object object){
+		loadFromObject(object);
 	}
 
 
@@ -49,4 +58,13 @@ public class PlukPermission{
 		return false;
 	}
 
+	@Override
+	public void loadFromObject(Object object){
+		if(object instanceof String)
+			permissions = new String[]{((String) object)};
+		else if(object instanceof Collection)
+			permissions = (String[]) ((Collection) object).toArray(new String[0]);
+		else if(object instanceof String[])
+			permissions = (String[]) object;
+	}
 }
