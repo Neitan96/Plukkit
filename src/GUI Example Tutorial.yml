@@ -1,0 +1,118 @@
+# Gerenciador de menus, nele fica todas as GUIs do seu menu.
+# Um gerenciador de menu não interage com outros gerenciadores.
+# OBS: Pode ser qualquer nome.
+MainGui:
+
+ # Aqui você pode colocar alguns displays para poder colocar em vários
+ # botões sem precisar ficar repetindo o mesmo display várias vezes.
+ # Opcional.
+ Displays:
+  # Nome do display, usado para referências nos botões.
+  Inicio:
+   Title: 'Iníco' # Opcional, você também pode definir o title no botão.
+   Material: 'Emerald'
+   Data: 0 # O sub-tipo do material, Opcional.
+   Amount: 1 # Opcional, Padrão: 1.
+   Lore: 'Ir para o início' # Opcional, também pode ser uma lista e definir o lore no botão.
+   # Encantamentos do display, não há restrição de nível do encantamento
+   # Opcional.
+   Enchantments:
+    PROTECTION_ENVIRONMENTAL: 2
+    DURABILITY: 3
+
+ # Aqui você pode colocar alguns botões para colocar em varias GUIs sem
+ # precisar fica repetindo o mesmo botão várias vezes.
+ # OBS: A diferença entre um botão e um display é que o display é somente
+ # o visual do botão, ou seja, o bloco/ItemStack, o botão é o display com
+ # todas funções que ele irá fazer.
+ Buttons:
+  # Nome do botão, usado para referências nas GUIs.
+  Home:
+   # Caso esta função esteja ativada a GUI irá fechar quando clicar no botão.
+   # Opcional, Padrão: false.
+   CloseOnClick: true
+   Display: 'Inicio' # Usando o display acima.
+   Title: 'Voltar' # Substituindo o title do display, Opcional.
+   Lore: ['Início', 'Voltar para o início'] # Substituindo o lore do display, Opcional.
+   # Ações do botão, alguns plugins também pode criar ações personalizadas
+   Permission: 'gui.botao.home' # Permissão para exibir o botão, Opcional.
+   Actions:
+    # Ações padrões:
+    # - ToPage: Vai para outra GUI.
+    # - CommandPlayer: Faz o player executar um comando.
+    # - CommandConsole: Faz o console executar um comando.
+    # Em algumas ações você também pode usa uma lista para executar varias
+    # ações do mesmo tipo.
+    ToPage: 'Home'
+
+ # Essa é uma GUI/página, pode colocar qualquer nome e quantas páginas você quiser.
+ Home:
+  # Permissão para abrir a GUI, isso é somente uma segurança a mais, recomendo que
+  # verifique as permissões para abrir a GUI antes de tentar abrir.
+  Permission: 'gui.page.home'
+  Size: 9 # Quantidade de slots da GUI.
+
+  # No título da GUI pode colocar quantos títulos quiser e definir uma permissão para exibir o título.
+  # Isso afeta somente o título da GUI caso o player não tenha nenhuma permissão dos títulos a GUI
+  # irá abrir com título.
+  Title:
+   # Título com permissão, pode coloca qualquer nome aqui.
+   VIP:
+    Title: 'Olá {PlayerName}, Bem vindo!'# Título da GUI
+    Permission: 'gui.title.vip' # Permissão para usar o título, você também pode colocar uma lista.
+   Padrao: 'Bem vindo!'# Título sem permissão.
+
+  # Aqui fica todos botões da GUI
+  Buttons:
+   # Você pode escolher qual quer nome para o botão e colocar vários botões
+   # no mesmo slot, o que vai definir qual botão irá aparecer é a permissão
+   # que você escolher.
+   BasicChest:
+    Slot: 0
+    Permission: 'gui.botao.baubasico'
+    CloseOnClick: true
+    Display:
+     Title: 'Baú básico'
+     Material: 'CHEST'
+     Amount: 1
+     Lore: 'Esse botão te dar itens básicos'
+    Actions:
+     # Ações por permissões
+     VIP:
+      Permission: 'gui.vip'
+      CommandConsole:
+       - 'give Neitan96 diamond_sword'
+     CommandConsole:
+      - 'give Neitan96 iron_sword'
+      - 'give Neitan96 iron_pickaxe'
+      - 'give Neitan96 iron_axe'
+      - 'give Neitan96 iron_shovel'
+      - 'give Neitan96 apple 8'
+
+   Central:
+    Slot: 1
+    Permission: 'gui.botao.central'
+    CloseOnClick: true
+    Display:
+     Title: 'Central de comando do servidor'
+     Material: 'Command block'
+     Lore: 'Abre a central de comando do servidor'
+    Actions:
+     ToPage: 'Central'
+
+ Central:
+  Permission: 'gui.page.central'
+  Title: 'Central de comando'
+  Size: 36
+  Buttons:
+   Day:
+    Slot: 0
+    Display:
+     Title: 'Dia'
+     Lore: 'Defini a hora para o dia'
+     Material: 'Clock'
+    Actions:
+     CommandPlayer: 'time set 6000'
+   Home:
+    Slot: 8
+    Model: 'Home'
