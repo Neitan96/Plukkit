@@ -2,6 +2,7 @@ package br.com.nathanalmeida.plukkit.gui.core.button;
 
 import br.com.nathanalmeida.plukkit.configurations.features.PlukPermission;
 import br.com.nathanalmeida.plukkit.gui.core.action.GUIActionButton;
+import br.com.nathanalmeida.plukkit.gui.core.events.GUIInvButtonClickEvent;
 import br.com.nathanalmeida.plukkit.loaders.PlukConfigLoader;
 
 import java.util.List;
@@ -30,5 +31,7 @@ public interface GUIButton{
 	PlukPermission getPermission();
 
 	List<GUIActionButton> getActions();
+
+	void onClick(GUIInvButtonClickEvent event);
 
 }
