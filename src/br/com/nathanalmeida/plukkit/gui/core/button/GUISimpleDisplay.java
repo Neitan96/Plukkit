@@ -24,8 +24,8 @@ public class GUISimpleDisplay implements GUIButtonDisplay, PlukConfigLoader{
 
 	public Material material;
 	public String title;
-	public byte data = 0;
-	public int amount = 1;
+	public byte data;
+	public int amount;
 	public String[] lore;
 	public Map<Enchantment, Integer> enchantments;
 
@@ -48,6 +48,10 @@ public class GUISimpleDisplay implements GUIButtonDisplay, PlukConfigLoader{
 
 	public GUISimpleDisplay(Material material){
 		this(material, null);
+	}
+
+	public GUISimpleDisplay(ConfigurationSection section){
+		loadFromConfig(section);
 	}
 
 	@Override
